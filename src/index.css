@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-[#fefefe] text-charcoal;
+  }
+  p {
+    @apply text-[16px];
+  }
+  h1 {
+    @apply text-3xl font-bold text-slate;
+  }
+}
+
+.checkmark-list > li {
+  @apply bg-[url("icon-list.svg")] bg-left-top bg-no-repeat pl-8 mb-4;
+}
