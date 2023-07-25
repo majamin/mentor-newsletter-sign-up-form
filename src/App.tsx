@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChangeEvent, FormEvent } from "react";
 
 function App() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const getScreenWidth = () => {
+    return window.innerWidth;
+  };
+
+  const [screenWidth, setScreenWidth] = useState(getScreenWidth());
+
+  // Add an event listener to update the screen width whenever the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(getScreenWidth());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -33,10 +51,10 @@ function App() {
   if (!submitted) {
     return (
       <>
-        <div className="mx-auto flex h-[800px] w-[375px] flex-col rounded-lg">
+        <div className="mx-auto bg-white flex h-[800px] w-[375px] flex-col rounded-3xl mt-20 desktop:flex-row-reverse desktop:w-[930px] desktop:justify-between desktop:h-[640px] desktop:p-6">
           <img
-            src="illustration-sign-up-mobile.svg"
-            className="h-auto w-full"
+            src={`${screenWidth < 1440 ? 'illustration-sign-up-mobile.svg' : 'illustration-sign-up-desktop.svg'}`}
+            className="h-auto w-full desktop:h-full desktop:w-auto"
             alt=""
           />
           <div className="flex flex-col space-y-6 px-8 py-10">
@@ -58,11 +76,10 @@ function App() {
                 <input
                   type="text"
                   id="email"
-                  className={`${
-                    error
-                      ? "bg-tomato bg-opacity-10 text-tomato focus:ring-tomato"
-                      : "text-inerit focus:ring-slate"
-                  } mb-6 w-full appearance-none rounded border px-3 py-2 leading-tight ring-opacity-0 transition duration-500 focus:outline-none focus:ring-1 focus:ring-opacity-100 `}
+                  className={`${error
+                    ? "bg-tomato bg-opacity-10 text-tomato focus:ring-tomato"
+                    : "text-inerit focus:ring-slate"
+                    } mb-6 w-full appearance-none rounded border px-3 py-2 leading-tight ring-opacity-0 transition duration-500 focus:outline-none focus:ring-1 focus:ring-opacity-100 `}
                   placeholder="email@company.com"
                   required
                   value={email}
@@ -89,7 +106,7 @@ function App() {
   } else {
     return (
       <>
-        <div className="mx-auto flex h-[800px] w-[375px] flex-col justify-evenly rounded-lg px-8 py-10">
+        <div className="mx-auto flex h-[800px] w-[375px] flex-col justify-evenly rounded-lg px-8 py-10 desktop:bg-white">
           <div className="flex flex-col space-y-6">
             <img src="icon-success.svg" className="h-auto w-12" alt="" />
             <h1>Thanks for subscribing!</h1>
