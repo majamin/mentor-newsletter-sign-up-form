@@ -18,9 +18,9 @@ function App() {
       setScreenWidth(getScreenWidth());
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -51,9 +51,13 @@ function App() {
   if (!submitted) {
     return (
       <>
-        <div className="mx-auto bg-white flex h-[800px] w-[375px] flex-col rounded-3xl mt-20 desktop:flex-row-reverse desktop:w-[930px] desktop:justify-between desktop:h-[640px] desktop:p-6">
+        <div className="mx-auto flex h-[800px] w-[375px] flex-col rounded-3xl bg-white desktop:mt-20 desktop:h-[640px] desktop:w-[930px] desktop:flex-row-reverse desktop:justify-between desktop:p-6">
           <img
-            src={`${screenWidth < 1440 ? 'illustration-sign-up-mobile.svg' : 'illustration-sign-up-desktop.svg'}`}
+            src={`${
+              screenWidth < 1440
+                ? "illustration-sign-up-mobile.svg"
+                : "illustration-sign-up-desktop.svg"
+            }`}
             className="h-auto w-full desktop:h-full desktop:w-auto"
             alt=""
           />
@@ -76,10 +80,11 @@ function App() {
                 <input
                   type="text"
                   id="email"
-                  className={`${error
-                    ? "bg-tomato bg-opacity-10 text-tomato focus:ring-tomato"
-                    : "text-inerit focus:ring-slate"
-                    } mb-6 w-full appearance-none rounded border px-3 py-2 leading-tight ring-opacity-0 transition duration-500 focus:outline-none focus:ring-1 focus:ring-opacity-100 `}
+                  className={`${
+                    error
+                      ? "bg-tomato bg-opacity-10 text-tomato focus:ring-tomato"
+                      : "text-inerit focus:ring-slate"
+                  } mb-6 w-full appearance-none rounded border px-3 py-2 leading-tight ring-opacity-0 transition duration-500 focus:outline-none focus:ring-1 focus:ring-opacity-100 `}
                   placeholder="email@company.com"
                   required
                   value={email}
@@ -106,21 +111,22 @@ function App() {
   } else {
     return (
       <>
-        <div className="mx-auto flex h-[800px] w-[375px] flex-col justify-evenly rounded-lg px-8 py-10 desktop:bg-white">
-          <div className="flex flex-col space-y-6">
-            <img src="icon-success.svg" className="h-auto w-12" alt="" />
-            <h1>Thanks for subscribing!</h1>
-            <p>
-              A confirmation email has been sent to <span className="font-bold">{email}</span>. Please open it and click the button inside to confirm your subscription
-            </p>
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="mb-2 mr-2 w-full rounded-lg bg-charcoal px-5 py-3.5 text-center text-sm font-bold text-white hover:bg-gradient-to-r hover:from-[#ff5378] hover:to-[#ff673e] focus:outline-none focus:ring-4"
-            >
-              Dismiss message
-            </button>
+        <div className="flex h-screen items-center justify-center desktop:bg-charcoal">
+          <div className="mx-auto flex h-[800px] w-[375px] flex-col justify-evenly rounded-lg bg-white px-16 py-14 desktop:h-[520px] desktop:w-[504px]">
+            <div className="flex flex-col space-y-6">
+              <img src="icon-success.svg" className="h-auto w-12" alt="" />
+              <h1>Thanks for subscribing!</h1>
+              <p>
+                A confirmation email has been sent to{" "}
+                <span className="font-bold">{email}</span>. Please open it and
+                click the button inside to confirm your subscription
+              </p>
+            </div>
+            <div>
+              <button className="mb-2 mr-2 w-full rounded-lg bg-charcoal px-5 py-3.5 text-center text-sm font-bold text-white hover:bg-gradient-to-r hover:from-[#ff5378] hover:to-[#ff673e] focus:outline-none focus:ring-4">
+                Dismiss message
+              </button>
+            </div>
           </div>
         </div>
       </>
