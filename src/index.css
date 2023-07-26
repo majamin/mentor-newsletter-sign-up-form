@@ -15,5 +15,5 @@
 }
 
 .checkmark-list > li {
-  @apply bg-[url("icon-list.svg")] bg-left-top bg-no-repeat pl-8 mb-4;
+  @apply bg-[url("/icon-list.svg")] bg-left-top bg-no-repeat pl-8 mb-4;
 }
